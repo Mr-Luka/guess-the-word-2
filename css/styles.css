@@ -24,7 +24,7 @@ body {
 }
 
 .container {
-    max-width: 30rem;
+    max-width: 38rem;
     height: auto;
     background-color: rgb(5, 5, 47);
     text-align: center;
@@ -42,16 +42,35 @@ body {
 #scramblle-word {
     width: 87%;
     padding: 1.2rem 0 1.2rem 0;
-    background-color: #93969b;
+    background-color: #455265;
     border-radius: 10px;
-    color: white;
+    color: rgb(165, 165, 185);
     display: flex;
     justify-content: center;
+    font-family: 'Sora', sans-serif;
 }
 p.scramblle {
     font-size: 2rem;
     margin: 0rem 0.5rem 0rem 0.5rem;
     font-weight: bold;
+}
+
+.tries-and-mistakes{
+    display: flex;
+    justify-content: space-around;
+    color: rgb(79, 79, 79);
+    font-family: 'Sora', sans-serif;
+}
+#span-mistakes {
+    font-size: 1.2rem;
+    color: rgb(146, 146, 163);
+    font-family: 'Sora', sans-serif;
+}
+.circles {
+    font-size: 1.2rem;
+}
+.circle-done {
+    color: rgb(118, 20, 157);
 }
 
 
