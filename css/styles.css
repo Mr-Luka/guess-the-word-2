@@ -19,8 +19,39 @@ body {
     overflow-x: hidden;
     padding: 4rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    max-width: 30rem;
+    height: auto;
+    background-color: rgb(5, 5, 47);
+    text-align: center;
+    border-radius: 15px;
+}
+.logo-and-text {
+    display: flex;
     flex-direction: column;
+    align-items: center;
+}
+#logo {
+    width: 40%;
+    padding: 2.5rem 0rem 2rem 0rem;
+}
+#scramblle-word {
+    width: 87%;
+    padding: 1.2rem 0 1.2rem 0;
+    background-color: #93969b;
+    border-radius: 10px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+p.scramblle {
+    font-size: 2rem;
+    margin: 0rem 0.5rem 0rem 0.5rem;
+    font-weight: bold;
 }
 
 
