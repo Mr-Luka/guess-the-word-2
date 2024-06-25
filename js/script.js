@@ -12,6 +12,16 @@ let guessedLetters = [];
 let triesLeft = 5;
 
 
+const getWord = async function () {
+    const response = await fetch (`https://gist.githubusercontent.com/skillcrush-curriculum/7061f1d4d3d5bfe47efbfbcfe42bf57e/raw/5ffc447694486e7dea686f34a6c085ae371b43fe/words.txt`);
+    const data = await response.text();
+    const wordArray = data.split("\n");
+    const randomIndex = Math.floor(Math.random() * wordArray.length);
+    word = wordArray[randomIndex].trim();
+    createScramblleWord(word);
+}
+getWord();
+
 function createScramblleWord(word) {
     scramblleWord.innerHTML = "";
     for (let letter of word) {
