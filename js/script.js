@@ -7,4 +7,21 @@ const input = document.querySelectorAll("input");
 const random = document.querySelector("#random");
 const reset = document.querySelector("#reset");
 
-console.log(random);
+let word = "flower"
+let guessedLetters = [];
+let triesLeft = 5;
+
+
+function createScramblleWord(word) {
+    scramblleWord.innerHTML = "";
+    for (let letter of word) {
+        const p = document.createElement("p");
+        p.classList.add("scramblle");
+        p.textContent = letter;
+        scramblleWord.appendChild(p)
+    }
+}
+createScramblleWord(word);
+
+
+// random.addEventListener("click", mainWord);
