@@ -3,11 +3,13 @@ const tries = document.querySelector("#span-tries");
 const triesSymbol = document.querySelector("p#tries");
 const mistakes = document.querySelector("#span-mistakes");
 const input = document.querySelectorAll("input");
+const inputBoxes = document.querySelector(".word-letters");
+
 
 const random = document.querySelector("#random");
 const reset = document.querySelector("#reset");
 
-let word = "flower"
+let word = ""
 let guessedLetters = [];
 let triesLeft = 5;
 
@@ -29,9 +31,19 @@ function createScramblleWord(word) {
         p.classList.add("scramblle");
         p.textContent = letter;
         scramblleWord.appendChild(p)
+        
     }
 }
-createScramblleWord(word);
+
 
 
 random.addEventListener("click", getWord)
+
+
+function placeholders (word) {
+    inputBoxes.innerHTML = "";
+
+}
+getWord()
+createScramblleWord(word);
+
