@@ -21,6 +21,7 @@ const getWord = async function () {
     const randomIndex = Math.floor(Math.random() * wordArray.length);
     word = wordArray[randomIndex].trim();
     createScramblleWord(word);
+    placeholders(word)
 }
 
 
@@ -42,8 +43,16 @@ random.addEventListener("click", getWord)
 
 function placeholders (word) {
     inputBoxes.innerHTML = "";
-
+    const separateLetters = word.split("");
+    for (let letter of separateLetters) {
+        const inputBox = document.createElement("input");
+        inputBox.type = "text";
+        inputBox.classList.add("input");
+        inputBox.maxLength = 1;
+        inputBoxes.appendChild(inputBox);
+    }
 }
 getWord()
 createScramblleWord(word);
+placeholders(word)
 
