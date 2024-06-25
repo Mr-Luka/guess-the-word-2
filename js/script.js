@@ -20,7 +20,7 @@ const getWord = async function () {
     word = wordArray[randomIndex].trim();
     createScramblleWord(word);
 }
-getWord();
+
 
 function createScramblleWord(word) {
     scramblleWord.innerHTML = "";
@@ -34,4 +34,4 @@ function createScramblleWord(word) {
 createScramblleWord(word);
 
 
-// random.addEventListener("click", mainWord);
+random.addEventListener("click", getWord)
