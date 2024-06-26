@@ -4,6 +4,7 @@ const triesSymbol = document.querySelector("p#tries");
 const mistakes = document.querySelector("#span-mistakes");
 const input = document.querySelectorAll("input");
 const inputBoxes = document.querySelector(".word-letters");
+const pScramble = document.querySelector(".scramblle");
 
 
 const random = document.querySelector("#random");
@@ -24,21 +25,17 @@ const getWord = async function () {
     placeholders(word)
 }
 
+function scrambleTheWord (word) {
+    const separateLetters = word.split(" ");
+    const scrambledWord = separateLetters.sort(() => Math.random() - 0.5).join();
+    return scrambledWord;
+}
 
 function createScramblleWord(word) {
     scramblleWord.innerHTML = "";
-    for (let letter of word) {
-        const p = document.createElement("p");
-        p.classList.add("scramblle");
-        p.textContent = letter;
-        scramblleWord.appendChild(p)
-        
-    }
+    pScramble.textContent = scrambleTheWord (word);
+    scramblleWord.appendChild(pScramble)        
 }
-
-
-
-random.addEventListener("click", getWord)
 
 
 function placeholders (word) {
@@ -52,7 +49,11 @@ function placeholders (word) {
         inputBoxes.appendChild(inputBox);
     }
 }
+
+
+
 getWord()
 createScramblleWord(word);
-placeholders(word)
+
+random.addEventListener("click", getWord)
 
