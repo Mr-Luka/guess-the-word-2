@@ -23,17 +23,21 @@ const getWord = async function () {
     word = wordArray[randomIndex].trim();
     createScramblleWord(word);
     placeholders(word)
+    scrambleTheWord(word)
 }
 
-function scrambleTheWord (word) {
-    const separateLetters = word.split(" ");
-    const scrambledWord = separateLetters.sort(() => Math.random() - 0.5).join();
-    return scrambledWord;
+const scrambleTheWord = (word) => {
+    const separateLetters = word.split("");
+    const scrambledWord = separateLetters.sort(() => Math.random() - 0.5).join(' ');
+    pScramble.textContent = scrambledWord;
 }
+
+
+
 
 function createScramblleWord(word) {
     scramblleWord.innerHTML = "";
-    pScramble.textContent = scrambleTheWord (word);
+    pScramble.textContent = word;
     scramblleWord.appendChild(pScramble)        
 }
 
