@@ -5,6 +5,7 @@ const mistakes = document.querySelector("#span-mistakes");
 const input = document.querySelectorAll("input");
 const inputBoxes = document.querySelector(".word-letters");
 const pScramble = document.querySelector(".scramblle");
+const imgLogo = document.querySelector("#logo");
 
 
 const random = document.querySelector("#random");
@@ -23,7 +24,8 @@ const getWord = async function () {
     word = wordArray[randomIndex].trim();
     createScramblleWord(word);
     placeholders(word)
-    scrambleTheWord(word)
+    scrambleTheWord(word);
+
 }
 
 const scrambleTheWord = (word) => {
@@ -38,7 +40,9 @@ const scrambleTheWord = (word) => {
 function createScramblleWord(word) {
     scramblleWord.innerHTML = "";
     pScramble.textContent = word;
-    scramblleWord.appendChild(pScramble)        
+    scramblleWord.appendChild(pScramble)
+    scramblleWord.classList.add("shake");   
+    imgLogo.classList.add("shake");
 }
 
 
