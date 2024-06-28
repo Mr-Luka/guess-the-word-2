@@ -1,6 +1,7 @@
 const scramblleWord = document.querySelector("#scramblle-word");
 const tries = document.querySelector("#span-tries");
 const triesSymbol = document.querySelector("p#tries");
+const trySymbols = document.querySelectorAll(".circles")
 const mistakes = document.querySelector("#span-mistakes");
 const input = document.querySelectorAll("input");
 const inputBoxes = document.querySelector(".word-letters");
@@ -28,6 +29,7 @@ const getWord = async function () {
     scrambleTheWord(word);
 
 }
+console.log(getWord(word))
 
 const scrambleTheWord = (word) => {
     const separateLetters = word.split("");
@@ -59,28 +61,33 @@ function placeholders (word) {
     }
 }
 
-function checkLetter(e) {
-    const input = e.target;
+function checkLetter(event) {
+    const input = event.target;
     const letter = input.value.toLowerCase();
     const index = input.dataset.index;
 
-    if( letter === word[index]) {
+    if (letter === "") return; // Ignore if input is empty (backspace handling)
+
+    if (letter === word[index]) {
         input.style.color = "green";
         input.disabled = true;
-    } else {
+    } else if (!guessedLetters.includes(letter)) {
         input.style.color = "red";
         guessedLetters.push(letter);
-        mistakes.textContent = guessedLetters.join(", ");
-        triesLeft--;
-        tries.textContent = triesLeft;
-        triesSymbol[5 - triesLeft - 1].classList.add("circle-done")
+        mistakes.textContent = guessedLetters.join(', ');
+
+        if (triesLeft > 0) {
+            triesLeft--;
+            tries.textContent = triesLeft;
+            trySymbols[5 - triesLeft - 1].classList.add("circle-done");
+        }
     }
 
-    if(triesLeft === 0) {
-        alert("You ran out of tries! Try again!");
+    if (triesLeft === 0) {
+        alert("You ran out of tries! Try again.");
         resetGame();
-    } else if (Array.from(inputBoxes.querySelectorAll("input")).every(input=>input.disabled)){
-        alert("You guessed the word! Congratulations !");
+    } else if (Array.from(inputBoxes.querySelectorAll("input")).every(input => input.disabled)) {
+        alert("You guessed the word! Congratulations!");
         resetGame();
     }
 }
@@ -90,12 +97,25 @@ function resetGame() {
     mistakes.textContent = "";
     triesLeft = 5;
     tries.textContent = triesLeft;
-    triesSymbol.forEach(circle => circle.classList.remove("circle-done"));
+    trySymbols.forEach(circle => circle.classList.remove("circle-done"));
+    
+    inputBoxes.querySelectorAll("input").forEach(input => {
+        input.value = "";
+        input.style.color = "";
+        input.disabled = false;
+    })
+
     getWord();
 }
 
+function resetGameOnRandom() {
+    resetGame();
+    getWord()
+}
+
 form.addEventListener("input", checkLetter);
-random.addEventListener("click", getWord)
+random.addEventListener("click", resetGameOnRandom)
+reset.addEventListener("click", resetGame)
 
 getWord()
 createScramblleWord(word);
