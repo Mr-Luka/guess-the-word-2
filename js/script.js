@@ -85,7 +85,14 @@ function checkLetter(e) {
     }
 }
 
-
+function resetGame() {
+    guessedLetters = [];
+    mistakes.textContent = "";
+    triesLeft = 5;
+    tries.textContent = triesLeft;
+    triesSymbol.forEach(circle => circle.classList.remove("circle-done"));
+    getWord();
+}
 
 form.addEventListener("input", checkLetter);
 random.addEventListener("click", getWord)
