@@ -6,6 +6,7 @@ const input = document.querySelectorAll("input");
 const inputBoxes = document.querySelector(".word-letters");
 const pScramble = document.querySelector(".scramblle");
 const imgLogo = document.querySelector("#logo");
+const form = document.querySelector("form");
 
 
 const random = document.querySelector("#random");
@@ -58,10 +59,38 @@ function placeholders (word) {
     }
 }
 
+function checkLetter(e) {
+    const input = e.target;
+    const letter = input.value.toLowerCase();
+    const index = input.dataset.index;
 
+    if( letter === word[index]) {
+        input.style.color = "green";
+        input.disabled = true;
+    } else {
+        input.style.color = "red";
+        guessedLetters.push(letter);
+        mistakes.textContent = guessedLetters.join(", ");
+        triesLeft--;
+        tries.textContent = triesLeft;
+        triesSymbol[5 - triesLeft - 1].classList.add("circle-done")
+    }
+
+    if(triesLeft === 0) {
+        alert("You ran out of tries! Try again!");
+        resetGame();
+    } else if (Array.from(inputBoxes.querySelectorAll("input")).every(input=>input.disabled)){
+        alert("You guessed the word! Congratulations !");
+        resetGame();
+    }
+}
+
+
+
+form.addEventListener("input", checkLetter);
+random.addEventListener("click", getWord)
 
 getWord()
 createScramblleWord(word);
 
-random.addEventListener("click", getWord)
 
